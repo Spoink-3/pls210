@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Republics; or, Why Clubs Are Voter Factories</title>
+<style>
+  :root {
+    --ink: #1c2b25;
+    --paper: #f2ede2;
+    --accent: #a8402c;
+    --accent2: #4f6b52;
+    --line: #cfc4ac;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .deck { position: relative; width: 100vw; height: 100vh; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    padding: 6vh 7vw;
+  }
+  .slide.active { display: block; }
+
+  /* Slide 1: title, bottom-left anchored */
+  #s1 { display: none; }
+  #s1.active { display: flex; align-items: flex-end; }
+  #s1 .content { max-width: 40rem; }
+  #s1 .eyebrow { font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem; }
+  #s1 h1 { font-size: 3.2rem; margin: 0 0 1rem; line-height: 1.25; font-weight: normal; }
+  #s1 .accent-word { color: var(--accent); }
+  #s1 p { color: var(--line); font-size: 1.1rem; max-width: 30rem; }
+
+  /* Slide 2: RQ, split two-column */
+  #s2.active { display: flex; align-items: center; gap: 4rem; }
+  #s2 .left { flex: 2; }
+  #s2 .right { flex: 1; border-left: 2px solid var(--accent); padding-left: 2rem; }
+  #s2 .left h1 { font-size: 2rem; font-weight: normal; line-height: 1.35; }
+  #s2 .right .k { font-family: -apple-system, sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); }
+  #s2 .right .v { font-size: 1.3rem; margin: 0.3rem 0 1.2rem; }
+
+  /* Slide 3: motivation, big stat */
+  #s3.active { display: flex; flex-direction: column; justify-content: center; }
+  #s3 .stat-row { display: flex; gap: 3rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  #s3 .stat { font-family: -apple-system, sans-serif; }
+  #s3 .stat .num { font-size: 3.5rem; color: var(--accent); line-height: 1; }
+  #s3 .stat .lbl { color: var(--line); font-size: 0.95rem; margin-top: 0.4rem; max-width: 12rem; }
+  #s3 h1 { font-weight: normal; font-size: 1.8rem; margin: 0; }
+
+  /* Slide 4: positioning, centered statement */
+  #s4.active { display: flex; align-items: center; justify-content: center; text-align: center; }
+  #s4 h1 { font-size: 2.4rem; font-weight: normal; max-width: 34rem; }
+  #s4 .accent-word { color: var(--accent); font-style: italic; }
+  #s4 .ivdv2 { font-family: -apple-system, sans-serif; font-size: 1.15rem; color: var(--paper); margin-top: 1.3rem; max-width: 32rem; }
+  #s4 .fine { font-family: -apple-system, sans-serif; color: var(--line); font-size: 0.9rem; margin-top: 0.7rem; }
+
+  /* Slide 5: gap, timeline style */
+  #s5.active { display: flex; flex-direction: column; justify-content: center; }
+  #s5 h1 { font-weight: normal; font-size: 1.9rem; margin-bottom: 2rem; }
+  #s5 .timeline { display: flex; align-items: center; font-family: -apple-system, sans-serif; }
+  #s5 .step { flex: 1; text-align: center; padding: 0 1rem; }
+  #s5 .step .n { font-size: 0.75rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; }
+  #s5 .step p { font-size: 0.95rem; color: var(--line); }
+  #s5 .connector { flex: 0 0 3rem; height: 2px; background: var(--line); }
+
+  /* Slide 6: literature, vertical stacked list not cards */
+  #s6.active { display: flex; flex-direction: column; justify-content: center; }
+  #s6 h1 { font-weight: normal; font-size: 1.8rem; margin-bottom: 1.5rem; }
+  #s6 .entry { display: flex; gap: 1.5rem; padding: 0.9rem 0; border-top: 1px solid var(--line); font-family: -apple-system, sans-serif; }
+  #s6 .entry:last-child { border-bottom: 1px solid var(--line); }
+  #s6 .entry .who { flex: 0 0 13rem; font-weight: 600; }
+  #s6 .entry .what { color: var(--line); font-size: 0.92rem; }
+  #s6 .cue { color: var(--accent2); font-size: 0.8rem; font-style: italic; }
+
+  /* Slide 7: mechanisms, two vertical flows side by side */
+  #s7.active { display: flex; flex-direction: column; justify-content: center; }
+  #s7 h1 { font-weight: normal; font-size: 1.8rem; margin-bottom: 1.5rem; }
+  #s7 .flows { display: flex; gap: 3rem; font-family: -apple-system, sans-serif; }
+  #s7 .flow { flex: 1; }
+  #s7 .flow .tag { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  #s7 .flow .step { padding: 0.5rem 0 0.5rem 1rem; border-left: 2px solid var(--line); margin-top: 0.6rem; font-size: 0.95rem; }
+  #s7 .flow .step.last { border-left: 2px solid var(--accent2); color: var(--paper); font-weight: 600; }
+
+  /* Slide 8: hypothesis as pull-quote */
+  #s8.active { display: flex; align-items: center; }
+  #s8 .quote-mark { font-size: 5rem; color: var(--accent); line-height: 0; position: relative; top: 1.5rem; }
+  #s8 h1 { font-size: 2rem; font-weight: normal; max-width: 34rem; line-height: 1.3; }
+  #s8 .ivdv { font-family: -apple-system, sans-serif; font-size: 0.9rem; color: var(--line); margin-top: 1.2rem; }
+  #s8 .ivdv b { color: var(--accent2); }
+
+  /* Slide 9: AI + reflection, two columns */
+  #s9.active { display: flex; gap: 4rem; align-items: center; }
+  #s9 .col { flex: 1; font-family: -apple-system, sans-serif; }
+  #s9 .col h2 { font-family: Georgia, serif; font-weight: normal; font-size: 1.4rem; margin-bottom: 0.8rem; }
+  #s9 ul { padding-left: 1.1rem; margin: 0; }
+  #s9 li { font-size: 0.9rem; color: var(--line); margin-bottom: 0.5rem; }
+  #s9 .ph { border: 1px dashed var(--line); border-radius: 6px; padding: 1rem; font-style: italic; color: var(--line); font-size: 0.85rem; }
+  #s9 .tag2 { font-size: 0.65rem; border: 1px solid var(--line); color: var(--line); padding: 0.1rem 0.4rem; border-radius: 999px; }
+
+  /* Slide 10: refs + thanks */
+  #s10.active { display: flex; flex-direction: column; justify-content: center; }
+  #s10 h1 { font-weight: normal; font-size: 1.6rem; margin-bottom: 1rem; }
+  #s10 ol { font-family: -apple-system, sans-serif; font-size: 0.82rem; color: var(--line); padding-left: 1.2rem; }
+  #s10 li { margin-bottom: 0.5rem; }
+  #s10 .thanks { margin-top: 2rem; font-size: 1.6rem; color: var(--accent); }
+
+  .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); transition: width 0.25s; z-index: 5; }
+  .counter { position: fixed; bottom: 1rem; right: 1.5rem; font-family: -apple-system, sans-serif; font-size: 0.75rem; color: var(--line); }
+  .hint { position: fixed; bottom: 1rem; left: 1.5rem; font-family: -apple-system, sans-serif; font-size: 0.7rem; color: var(--line); opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <div class="slide active" id="s1">
+    <div class="content">
+      <div class="eyebrow">PLS210 · Presentation #1</div>
+      <h1>Little Republics<br><span class="accent-word" style="font-style:italic; font-size:1.6rem;">or, Why Clubs Are Voter Factories</span></h1>
+      <p>Does joining a student-led club shape whether students vote or join a party?</p>
+    </div>
+  </div>
+
+  <div class="slide" id="s2">
+    <div class="left">
+      <h1>Does membership in a student-led club increase institutionalized political participation among Kazakhstani university students?</h1>
+    </div>
+    <div class="right">
+      <div class="k">Window</div>
+      <div class="v">Fall 2026 → Fall 2027</div>
+      <div class="k">Design</div>
+      <div class="v">Panel — same students, twice</div>
+      <div class="k">Model</div>
+      <div class="v" style="font-size:1rem;">Bobkowski &amp; Miller (2016)</div>
+    </div>
+  </div>
+
+  <div class="slide" id="s3">
+    <h1>Why ask this</h1>
+    <div class="stat-row">
+      <div class="stat"><div class="num">151</div><div class="lbl">clubs listed on nuspace.kz alone</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">existing study on clubs &amp; participation — sororities, not general clubs</div></div>
+      <div class="stat"><div class="num">2</div><div class="lbl">measurable outcomes: voting, party membership</div></div>
+    </div>
+  </div>
+
+  <div class="slide" id="s4">
+    <div>
+      <h1>I work in the <span class="accent-word">positivist</span> tradition</h1>
+      <div class="ivdv2">H1 — Club members show higher institutionalized political participation than non-members.</div>
+      <div class="fine">IV — membership (binary) &nbsp;·&nbsp; DV — voted / party member (Y/N) &nbsp;·&nbsp; measurable, testable across many students</div>
+    </div>
+  </div>
+
+  <div class="slide" id="s5">
+    <h1>No one has tested this here</h1>
+    <div class="timeline">
+      <div class="step"><div class="n">Search</div><p>Zero results combining club + participation + Central Asia</p></div>
+      <div class="connector"></div>
+      <div class="step"><div class="n">Existing evidence</div><p>Almost entirely US-based</p></div>
+      <div class="connector"></div>
+      <div class="step"><div class="n">Design gap</div><p>Syvertsen (2009); Roberts &amp; Huffman (2005) — designed interventions, not everyday club life</p></div>
+    </div>
+  </div>
+
+  <div class="slide" id="s6">
+    <h1>Two camps</h1>
+    <div class="entry"><div class="who">Kumler &amp; Whittaker (2020)</div><div class="what">Engaged students vote and register more.<br><span class="cue">→ the pattern I'm testing</span></div></div>
+    <div class="entry"><div class="who">Bowman et al. (2015) &amp; Levine (2016)</div><div class="what">Same worry, two versions: students who join were already different — maybe one trait causes both.<br><span class="cue">→ the objection I address next</span></div></div>
+  </div>
+
+  <div class="slide" id="s7">
+    <h1>Two mechanisms</h1>
+    <div class="flows">
+      <div class="flow">
+        <div class="tag">Small-scale democracy</div>
+        <div class="step">Club membership</div>
+        <div class="step">Practicing elections, holding leaders accountable</div>
+        <div class="step last">Political participation ↑</div>
+      </div>
+      <div class="flow">
+        <div class="tag">Peer influence</div>
+        <div class="step">Club membership</div>
+        <div class="step">Peers treat voting as normal — social pressure to conform</div>
+        <div class="step last">Political participation ↑</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s8">
+    <div>
+      <div class="quote-mark">&ldquo;</div>
+      <h1>Maybe both come from the same root cause.</h1>
+      <div class="ivdv">The objection — active people may simply be more likely to <b>both</b> join clubs <b>and</b> vote.</div>
+      <div class="ivdv" style="margin-top:0.8rem;">My answer: track the <b>same</b> students over time. If participation shifts only <i>after</i> engagement shifts, that's evidence against pure selection — not proof, but leverage.</div>
+    </div>
+  </div>
+
+  <div class="slide" id="s9">
+    <div class="col">
+      <h2>Working with AI</h2>
+      <ul>
+        <li>Explained method concepts: positivism, selection bias, reverse causality</li>
+        <li>Helped troubleshoot Boolean search strategy</li>
+        <li>Suggested the peer-influence mechanism</li>
+        <li>I chose every source and made the design calls</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2><span class="tag2">not graded</span><br>Still open</h2>
+      <div class="ph">I honestly don't know if my research design can somehow counter the fact that both club membership and participation could have one root cause.</div>
+    </div>
+  </div>
+
+  <div class="slide" id="s10">
+    <h1>References</h1>
+    <ol>
+      <li>Bobkowski, P. S., &amp; Miller, P. R. (2016). Civic implications of secondary school journalism. <em>Journalism &amp; Mass Communication Quarterly, 93</em>(3), 530–550.</li>
+      <li>Bowman, N. A., Park, J. J., &amp; Denson, N. (2015). Student involvement in ethnic student organizations. <em>Research in Higher Education, 56</em>(2), 127–145.</li>
+      <li>Kumler, L. M., &amp; Whittaker, B. M. (2020). Using campus presidential debate watch events to nudge. <em>Journal of Political Science Education, 16</em>(2), 176–197.</li>
+      <li>Levine, P. (2016). Join a club! Or a team — both can make good citizens. <em>Phi Delta Kappan, 97</em>(8), 24–27.</li>
+      <li>Roberts, D. C., &amp; Huffman, E. A. (2005). Learning citizenship. <em>About Campus, 10</em>(4), 17–22.</li>
+      <li>Syvertsen, A. K., et al. (2009). Using elections as teachable moments. <em>American Journal of Education, 116</em>(1), 33–67.</li>
+    </ol>
+    <div class="thanks">Thank you.</div>
+  </div>
+
+</div>
+
+<div class="counter" id="counter">1 / 10</div>
+<div class="hint">click anywhere, or → ← / space</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counterEl = document.getElementById('counter');
+  const progressEl = document.getElementById('progress');
+  let i = 0;
+
+  function go(n) {
+    slides[i].classList.remove('active');
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides[i].classList.add('active');
+    counterEl.textContent = (i + 1) + ' / ' + slides.length;
+    progressEl.style.width = ((i + 1) / slides.length * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(i + 1); }
+    if (e.key === 'ArrowLeft') { go(i - 1); }
+  });
+  document.addEventListener('click', () => go(i + 1));
+
+  go(0);
+</script>
+
+</body>
+</html>
