@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Membership and Political Participation — Research Proposal</title>
+<style>
+  :root {
+    --accent: #b0472e;
+    --bg: #fdfcfb;
+    --text: #23201d;
+    --muted: #6b655d;
+    --card: #ffffff;
+    --border: #e7e0d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header {
+    background: var(--accent);
+    color: white;
+    padding: 2.5rem 1.5rem 2rem;
+  }
+  header .kicker {
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 0.5rem;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    max-width: 38rem;
+  }
+  main {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.8rem;
+    font-size: 0.8rem;
+  }
+  nav a {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+  section {
+    margin-bottom: 2.2rem;
+    scroll-margin-top: 1rem;
+  }
+  section h2 {
+    font-size: 1.15rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.9rem;
+  }
+  .rq-box {
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.3rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  ul.tight { margin: 0.3rem 0 0.3rem 1.1rem; padding: 0; }
+  ul.tight li { margin-bottom: 0.4rem; }
+  .flag {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: normal;
+    background: #fbe9d9;
+    color: #8a5a1e;
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .card h3 { margin: 0 0 0.4rem; font-size: 0.95rem; }
+  .card .tag {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: white;
+    background: var(--muted);
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    margin-right: 0.4rem;
+  }
+  .tag.inner { background: #6b7c4f; }
+  .tag.theory { background: #4f6c7c; }
+  .card blockquote {
+    margin: 0.5rem 0 0;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--border);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .chain {
+    font-family: "Courier New", monospace;
+    font-size: 0.85rem;
+    background: #f6f1ea;
+    padding: 0.7rem 0.9rem;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  .hyp-card {
+    background: #f6f1ea;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .hyp-card .row { display: flex; gap: 0.5rem; margin: 0.3rem 0; }
+  .hyp-card .label { color: var(--muted); min-width: 5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; padding-top: 0.1rem;}
+  .placeholder {
+    border: 2px dashed #b7b0a5;
+    background: #f4f2ef;
+    padding: 1.2rem;
+    border-radius: 8px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+  .refs { font-size: 0.85rem; }
+  .refs li { margin-bottom: 0.6rem; }
+  footer { text-align: center; padding: 1.5rem; color: var(--muted); font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">PLS210 · Presentation #1 · Research Design, Part 1</div>
+  <h1>Does Club Membership Predict Institutionalized Political Participation?</h1>
+</header>
+
+<main>
+  <nav>
+    <a href="#rq">RQ</a>
+    <a href="#positioning">Positioning</a>
+    <a href="#contribution">Contribution</a>
+    <a href="#litreview">Literature</a>
+    <a href="#theory">Theory</a>
+    <a href="#ai">AI Use</a>
+    <a href="#reflection">Reflection</a>
+    <a href="#refs">References</a>
+  </nav>
+
+  <section id="rq">
+    <h2>Research Question</h2>
+    <div class="rq-box">
+      Among students at Kazakhstani universities, does membership in a student-led club (vs. non-membership) predict institutionalized political participation — voting, party membership — measured Fall 2026 to Fall 2027?
+      <div class="flag">Panel design · same students surveyed twice, one year apart</div>
+    </div>
+  </section>
+
+  <section id="positioning">
+    <h2>Positioning: Positivist</h2>
+    <ul class="tight">
+      <li>Testing one specific hypothesis, not interpreting meaning</li>
+      <li>Variables are measurable and observable: membership (yes/no), voting (yes/no), party membership (yes/no)</li>
+      <li>Goal: a generalizable causal pattern across many students, not one group's lived experience</li>
+    </ul>
+  </section>
+
+  <section id="contribution">
+    <h2>Contribution — the Gap</h2>
+    <ul class="tight">
+      <li><strong>No Central Asian study exists</strong> on this relationship — confirmed by a systematic search returning zero results</li>
+      <li>Closest prior work studies <strong>fraternities/sororities</strong> — selective, socially exclusive orgs with their own selection bias, not open-enrollment clubs</li>
+      <li>Some prior work studies <em>designed interventions</em> (mock elections, facilitated debates) — this study observes clubs governing themselves with no researcher involvement</li>
+      <li>Panel design (same students, two waves) gives more leverage on reverse causality than most existing cross-sectional work</li>
+    </ul>
+  </section>
+
+  <section id="litreview">
+    <h2>Literature Review</h2>
+
+    <div class="card">
+      <span class="tag inner">Inner tier</span>
+      <h3>Kumler &amp; Whittaker (2020)</h3>
+      <blockquote>"...a third group of 'nudged' debate watchers voted and registered at higher rates than nonwatchers." (abstract)</blockquote>
+      <p style="font-size:0.85rem; color:var(--muted); margin:0.4rem 0 0;">Fraternity/sorority members, reference-group theory. Supports the peer-influence mechanism — but Greek-specific, US context.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag inner">Inner tier</span>
+      <h3>Bowman, Park &amp; Denson (2015)</h3>
+      <blockquote>"...students are quite predisposed to participate (or not participate) in these organizations, which can lead to significant challenges..." (abstract)</blockquote>
+      <p style="font-size:0.85rem; color:var(--muted); margin:0.4rem 0 0;">Names the exact selection problem this study faces. Uses statistical matching, not a panel, to address it.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag theory">Theory</span>
+      <h3>Levine (2016)</h3>
+      <blockquote>"Perhaps sports participation and civic engagement reflect other factors such as an energetic and outgoing personality, better schools, or more supportive families."</blockquote>
+      <p style="font-size:0.85rem; color:var(--muted); margin:0.4rem 0 0;">States the rival "common cause" hypothesis this study must address plainly.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag theory">Theory</span>
+      <h3>Bobkowski &amp; Miller (2016)</h3>
+      <blockquote>"...taking journalism classes is related positively to voting... to a similar degree that taking debate classes or participating in student government is related to voting." (abstract)</blockquote>
+      <p style="font-size:0.85rem; color:var(--muted); margin:0.4rem 0 0;">Nationally representative, longitudinal — closest methodological model for this study.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag theory">Theory</span>
+      <h3>Syvertsen et al. (2009)</h3>
+      <blockquote>"...significant effects of the program on students' self-reported ability to cast an informed vote... belief that their vote matters..." (abstract)</blockquote>
+      <p style="font-size:0.85rem; color:var(--muted); margin:0.4rem 0 0;">A designed civics intervention, not organic club life — measures self-reported dispositions, not confirmed voting behavior.</p>
+    </div>
+  </section>
+
+  <section id="theory">
+    <h2>Theory &amp; Hypothesis</h2>
+
+    <div class="hyp-card">
+      <div class="row"><div class="label">IV</div><div>Club membership — binary (0 = non-member, 1 = member)</div></div>
+      <div class="row"><div class="label">DV</div><div>Institutionalized political participation — voted in last election (Y/N); party member (Y/N)</div></div>
+      <div class="row"><div class="label">H1</div><div>Club members show higher institutionalized political participation than non-members.</div></div>
+    </div>
+
+    <div class="card">
+      <h3>Mechanism 1 — Small-scale democratic practice</h3>
+      <div class="chain">Membership → practicing club governance (electing/replacing leaders) → political self-efficacy ↑ → participation ↑</div>
+    </div>
+
+    <div class="card">
+      <h3>Mechanism 2 — Peer influence (reference group)</h3>
+      <div class="chain">Membership → peers treat voting as normal/expected → social pressure to conform → participation ↑</div>
+    </div>
+
+    <div class="card">
+      <h3>Rival explanation, addressed</h3>
+      <p style="margin:0; font-size:0.9rem;">Same trait could cause both (Levine, 2016). Panel design checks whether <em>change</em> in membership lines up with <em>change</em> in participation — doesn't eliminate selection bias, but gives leverage on it.</p>
+    </div>
+  </section>
+
+  <section id="ai">
+    <h2>AI Transparency Statement</h2>
+    <ul class="tight">
+      <li>AI explained method concepts: positivism, causal mechanisms, selection bias, reverse causality, panel design</li>
+      <li>AI helped troubleshoot Boolean search strategy across Google Scholar and the library database</li>
+      <li>AI suggested the peer-influence mechanism as a second pathway alongside my own social-capital idea</li>
+      <li>I formed the original question, found and chose every source, and made the final calls on scope and variables</li>
+    </ul>
+  </section>
+
+  <section id="reflection">
+    <h2>Closing Reflection <span style="font-weight:normal; font-size:0.75rem; color:var(--muted);">(ungraded)</span></h2>
+    <div class="placeholder">
+      [Your own words — 2–4 sentences. What did working with AI help you understand? What are you still unsure about? Don't let AI write this part.]
+    </div>
+  </section>
+
+  <section id="refs">
+    <h2>References</h2>
+    <ul class="refs tight">
+      <li>Bobkowski, P. S., &amp; Miller, P. R. (2016). Civic implications of secondary school journalism: Associations with voting propensity and community volunteering. <em>Journalism &amp; Mass Communication Quarterly, 93</em>(3), 530–550.</li>
+      <li>Bowman, N. A., Park, J. J., &amp; Denson, N. (2015). Student involvement in ethnic student organizations: Examining civic outcomes 6 years after graduation. <em>Research in Higher Education, 56</em>(2), 127–145.</li>
+      <li>Kumler, L. M., &amp; Whittaker, B. M. (2020). Using campus presidential debate watch events to nudge: Enlisting reference group leaders and incentives in the quest for increasing student political participation and efficacy. <em>Journal of Political Science Education, 16</em>(2), 176–197.</li>
+      <li>Levine, P. (2016). Join a club! Or a team — both can make good citizens. <em>Phi Delta Kappan, 97</em>(8), 24–27.</li>
+      <li>Roberts, D. C., &amp; Huffman, E. A. (2005). Learning citizenship: Campus-based initiatives for developing student change agents. <em>About Campus, 10</em>(4), 17–22.</li>
+      <li>Syvertsen, A. K., Stout, M. D., Flanagan, C. A., Mitra, D. L., Oliver, M. B., &amp; Sundar, S. S. (2009). Using elections as teachable moments: A randomized evaluation of the Student Voices civic education program. <em>American Journal of Education, 116</em>(1), 33–67.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>PLS210 · Presentation #1</footer>
+
+</body>
+</html>
